@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Dashboard from './components/Dashboard' 
+import SignIn from './components/SignIn'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = {
+    loggedUser: null,
+    token: null
+  }
+
+  componentDidMount(){
+    this.setState({
+      token: localStorage.token
+    })
+  }
+
+  isLoggedIn = () => {
+    return !!this.state.token
+  }
+
+  render() {
+    console.log(this.state.token)
+    return (
+      <main>
+        {this.isLoggedIn() ? <Dashboard /> : <SignIn />}
+      </main>
+    )
+  }
 }
 
 export default App;

@@ -1,3 +1,4 @@
 # Open Space (Frontend)
 
-## Dependencies 
+## Description
+A React frontend for Mod5 final project at Flatiron School.
