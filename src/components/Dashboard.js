@@ -1,4 +1,12 @@
 import React from 'react'
+import Navigation from './Navigation'
+
+import Mailbox from '../dashboardComponets/Mailbox'
+import MyPosts from '../dashboardComponets/MyPosts'
+import Postings from '../dashboardComponets/Postings'
+import Settings from '../dashboardComponets/Settings'
+
+import { Switch, Route } from 'react-router-dom'
 
 
 class Dashboard extends React.Component{
@@ -18,8 +26,13 @@ class Dashboard extends React.Component{
     render(){
         return(
             <section>
-                <button onClick={this.props.logoutUser}>Log me out</button>
-                <h1>Hi! I am from the Dashboard!</h1>
+                <Navigation logoutUser={this.props.logoutUser}/>
+                <Switch>
+                    <Route exact path="/" component={ Mailbox }/>
+                    <Route exac path="/myposts" component={ MyPosts }/>
+                    <Route exact path="/postings" component={ Postings }/>
+                    <Route exact path="/settings" component={ Settings }/>
+                </Switch>
             </section>
         )
     }

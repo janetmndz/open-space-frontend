@@ -1,4 +1,5 @@
 import React from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Dashboard from './components/Dashboard' 
 import SignIn from './components/SignIn'
 
@@ -38,11 +39,15 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.token)
     return (
-      <main>
-        {this.isLoggedIn() ? <Dashboard currentUserId={this.state.currentUserId} token={this.state.token} logoutUser={this.logoutUser}/> : <SignIn signInUser={this.signInUser}/>}
-      </main>
+      <Router>
+        <Route path='/' render={ () => (
+          <main>
+            {this.isLoggedIn() ? <Dashboard currentUserId={this.state.currentUserId} token={this.state.token} logoutUser={this.logoutUser}/> : <SignIn signInUser={this.signInUser}/>}
+          </main>
+        )}/>
+
+      </Router>
     )
   }
 }

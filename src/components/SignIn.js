@@ -12,7 +12,6 @@ class SignIn extends React.Component{
 
     signInSubmit = e => {
         e.preventDefault()
-        console.log("I am trying to be submitted!")
         const config = {
             method: 'POST',
             headers: {
@@ -41,7 +40,6 @@ class SignIn extends React.Component{
     }
 
     render(){
-        console.log(this.state.errors)
         return(
             <section>
                 <h1>Hi! I am from the SignIn!</h1>
