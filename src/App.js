@@ -4,25 +4,44 @@ import SignIn from './components/SignIn'
 
 class App extends React.Component {
   state = {
-    loggedUser: null,
+    currentUserId: null,
     token: null
-  }
-
-  componentDidMount(){
-    this.setState({
-      token: localStorage.token
-    })
   }
 
   isLoggedIn = () => {
     return !!this.state.token
   }
 
+  signInUser = (token, userId) => {
+    localStorage.token = token
+    localStorage.userId = userId 
+    this.setState({
+      token: token,
+      currentUserId: userId
+    })
+  }
+
+  logoutUser = () => {
+    delete localStorage.token
+    delete localStorage.userId
+    this.setState({
+      token: null,
+      loggedInUserId: null
+    })
+  }
+
+  componentDidMount(){
+    this.setState({
+      token: localStorage.token,
+      currentUserId: localStorage.userId
+    })
+  }
+
   render() {
     console.log(this.state.token)
     return (
       <main>
-        {this.isLoggedIn() ? <Dashboard /> : <SignIn />}
+        {this.isLoggedIn() ? <Dashboard currentUserId={this.state.currentUserId} token={this.state.token} logoutUser={this.logoutUser}/> : <SignIn signInUser={this.signInUser}/>}
       </main>
     )
   }

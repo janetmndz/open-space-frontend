@@ -28,7 +28,7 @@ class SignIn extends React.Component{
         .then(r => r.json())
         .then(d => {
             if (d.errors) {this.setState({errors: d.errros}); return;}
-            console.log(d.token, d.user_id)
+            this.props.signInUser(d.token, d.user_id)
         })
 
         }
