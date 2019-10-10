@@ -1,8 +1,13 @@
 import React from 'react'
+import Post from '../postComponents/Post'
 
-const MyPosts = () => {
+const MyPosts = (props) => {
+    const renderPosts = props.posts.map(p => <Post post={p} key={p.id}/>)
     return(
-        <h1>Hi! I'm from the MyPosts!</h1>
+        <div className="post__container">
+            <h1>Hi! I'm from the MyPosts!</h1>
+            {renderPosts}
+        </div>
     )
 }
 

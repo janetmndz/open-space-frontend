@@ -1,5 +1,5 @@
 import React from 'react'
-import Note from './Note'
+import Note from '../notesComponents/Note'
 
 const SectionedNote = props => {
     return(
