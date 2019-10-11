@@ -39,7 +39,7 @@ class Dashboard extends React.Component{
 
     render(){
         return(
-            <section>
+            <>
                 <Navigation logoutUser={this.props.logoutUser}/>
                 <Switch>
                     <Route exact path="/" render={ () => 
@@ -51,9 +51,11 @@ class Dashboard extends React.Component{
                     <Route exact path="/postings" render={ () => 
                         <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions}/> 
                     }/>
-                    <Route exact path="/settings" component={ Settings }/>
+                    <Route exact path="/settings" render={ () => 
+                        <Settings subscriptions={this.state.subscriptions} /> 
+                    }/>
                 </Switch>
-            </section>
+            </>
         )
     }
 }

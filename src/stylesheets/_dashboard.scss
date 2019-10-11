@@ -1,0 +1,24 @@
+main {
+    width: 100%;
+    min-height: 100%;
+    section{
+        width: 60%;
+        margin: 1rem auto;
+        h1{
+            line-height: 2;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+            text-align: center;
+            text-transform: smallcaps;
+            font-family: $display-font;
+            color: $black;
+        }
+        .container{
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-auto-rows: minmax(250px, auto);
+            grid-gap: 2rem; 
+        }
+    }
+}
+

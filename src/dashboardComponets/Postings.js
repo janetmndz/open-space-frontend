@@ -23,7 +23,7 @@ class Postings extends React.Component {
     }
 
     renderAllPostings = () => {
-        const subscriptionTopics = this.props.subscriptions.map(t => t.topic_id)
+        const subscriptionTopics = this.props.subscriptions.map(t => t.id)
         return this.state.postings
         .filter(pt => pt.user.id !== parseInt(this.props.currentUserId))
         .map( pt => {
@@ -35,10 +35,12 @@ class Postings extends React.Component {
     }
     render(){
         return(
-            <div className="postings__container">
-                <h1>Hi! I'm from all Postings</h1>
-                {this.renderAllPostings()}
-            </div>
+            <section className="postings__container">
+                <h1>Postings</h1>
+                <div className="container">
+                    {this.renderAllPostings()}
+                </div>
+            </section>
         )
     }
 }

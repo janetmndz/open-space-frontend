@@ -1,10 +1,11 @@
 //! This is for layouting and adding thr basics 
 @import url('https://fonts.googleapis.com/css?family=Judson&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+$display-font: 'Judson', sans-serif;
 $black: #171B37;
-$white: #ECECEC;
+$white: #FAFAFA;
 $pink: #EF7173;
-$gray: #F6F6F6;
+$gray: #ECECEC;
 
 *{
     box-sizing: border-box;
@@ -18,4 +19,6 @@ html, body{
     font-family: 'Monstserrat', sans-serif;
 }
 
-@import './navigation'
+@import './navigation';
+@import './dashboard';
+@import './posts'
