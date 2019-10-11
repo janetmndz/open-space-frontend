@@ -17,6 +17,26 @@ class Dashboard extends React.Component{
         subscriptions: []
     }
 
+    deleteSubscription = (subId) => {
+        console.log('I am being deleted!!', subId)
+
+        const config = {
+            method: 'DELETE',
+            headers: {
+                'Authorization': this.props.token,
+            }
+        }
+
+        fetch(`http://localhost:3000/subscriptions/${subId}`, config)
+        .then(r => r.json())
+        .then(d => {
+            let newSubs = this.state.subscriptions.filter(s => s.id !== subId)
+            this.setState({
+                subscriptions: newSubs
+            })
+        })
+    }
+
     componentDidMount(){
         const config = {
             method: 'GET',
@@ -52,7 +72,7 @@ class Dashboard extends React.Component{
                         <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions}/> 
                     }/>
                     <Route exact path="/settings" render={ () => 
-                        <Settings subscriptions={this.state.subscriptions} /> 
+                        <Settings subscriptions={this.state.subscriptions} deleteSubscription={this.deleteSubscription}/> 
                     }/>
                 </Switch>
             </>
