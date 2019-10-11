@@ -2,7 +2,7 @@ import React from 'react'
 
 const Post = (props) => {
     const renderWithUserName = () => {
-        if (!props.post.user.id) {return}
+        if (!props.post.user.id) {return null}
         return ( props.post.user.id !== parseInt(props.currentUserId)) 
         ? <p>By: {props.post.user.username}</p> 
         : null

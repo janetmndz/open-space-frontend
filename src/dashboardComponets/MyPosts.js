@@ -6,7 +6,7 @@ const MyPosts = (props) => {
     return(
         <div className="post__container">
             <h1>Hi! I'm from the MyPosts!</h1>
-            {/* {renderPosts} */}
+            {renderPosts}
         </div>
     )
 }
