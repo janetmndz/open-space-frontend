@@ -1,0 +1,21 @@
+//! This is for layouting and adding thr basics 
+@import url('https://fonts.googleapis.com/css?family=Judson&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+$black: #171B37;
+$white: #ECECEC;
+$pink: #EF7173;
+$gray: #F6F6F6;
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    color: $black;
+}
+
+html, body{
+    background: $gray;
+    font-family: 'Monstserrat', sans-serif;
+}
+
+@import './navigation'
