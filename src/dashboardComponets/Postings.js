@@ -24,15 +24,14 @@ class Postings extends React.Component {
 
     renderAllPostings = () => {
         const subscriptionTopics = this.props.subscriptions.map(t => t.topic_id)
-        //this.props.subscriptions.map(t => t.topic_id)
         return this.state.postings
         .filter(pt => pt.user.id !== parseInt(this.props.currentUserId))
         .map( pt => {
             let postTopics = pt.topics.filter( t => !subscriptionTopics.includes(t.id))
-            return (postTopics.length === 0) ? <Post post={pt} key={pt.id}/> : null
+            return (postTopics.length === 0) 
+                ? <Post post={pt} key={pt.id} currentUserId={this.props.currentUserId}/> 
+                : null
         })
-        // pt.user.id !== parseInt(this.props.currentUserId) &&
-        // .map( pt => <Post post={pt} key={pt.id}/>)
     }
     render(){
         return(

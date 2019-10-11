@@ -27,7 +27,6 @@ class Dashboard extends React.Component{
         fetch(`http://localhost:3000/users/${this.props.currentUserId}`, config)
         .then(r => r.json())
         .then( d =>{
-            console.log(d)
             this.setState({
                 posts: d.posts,
                 notes: d.notes,
@@ -47,7 +46,7 @@ class Dashboard extends React.Component{
                         <Mailbox posts={this.state.posts} recieved_notes={this.state.recieved_notes}/> 
                     }/>
                     <Route exac path="/myposts" render={ () => 
-                        <MyPosts posts={this.state.posts}/>
+                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId}/>
                     }/>
                     <Route exact path="/postings" render={ () => 
                         <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions}/> 
