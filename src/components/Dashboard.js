@@ -14,11 +14,11 @@ class Dashboard extends React.Component{
         posts: [],
         notes: [],
         recieved_notes: [],
-        subscriptions: []
+        subscriptions: [],
+        topics: []
     }
 
     deleteSubscription = (subId) => {
-        console.log('I am being deleted!!', subId)
 
         const config = {
             method: 'DELETE',
@@ -32,7 +32,37 @@ class Dashboard extends React.Component{
         .then(d => {
             let newSubs = this.state.subscriptions.filter(s => s.id !== subId)
             this.setState({
-                subscriptions: newSubs
+                subscriptions: newSubs,
+                topics: [
+                    ...this.state.topics,
+                    d
+                ]
+            })
+        })
+    }
+
+    addSubscription = (topicId) => {
+        const config = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.props.token
+            },
+            body: JSON.stringify({
+                "topic_id": topicId,
+                "user_id": this.props.currentUserId
+            })
+        }
+
+        fetch(`http://localhost:3000/subscriptions/`, config)
+        .then(r => r.json())
+        .then(d => {
+            this.setState({
+                subscriptions: [
+                    ...this.state.subscriptions,
+                    d
+                ],
+                topics: this.state.topics.filter( t => t.id !== d.topic_id ) 
             })
         })
     }
@@ -42,8 +72,12 @@ class Dashboard extends React.Component{
             method: 'GET',
             headers: {
                 "Authorization": this.props.token
-            } 
+            },
+            body:JSON.stringify({
+                "user_id": this.props.currentUserId
+            })
         }
+        
         fetch(`http://localhost:3000/users/${this.props.currentUserId}`, config)
         .then(r => r.json())
         .then( d =>{
@@ -54,7 +88,17 @@ class Dashboard extends React.Component{
                 subscriptions: d.subscriptions
             })
         }
+        ).then(
+            fetch(`http://localhost:3000/topics/`, config)
+            .then( r => r.json())
+            .then(d => {
+                let subs = this.state.subscriptions.map(s => s.topic_id)
+                this.setState({
+                    topics: d.filter( dt => !subs.includes(dt.id))
+                })
+            })
         )
+        
     }
 
     render(){
@@ -72,7 +116,7 @@ class Dashboard extends React.Component{
                         <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions}/> 
                     }/>
                     <Route exact path="/settings" render={ () => 
-                        <Settings subscriptions={this.state.subscriptions} deleteSubscription={this.deleteSubscription}/> 
+                        <Settings topics={this.state.topics} addSubscription={this.addSubscription} subscriptions={this.state.subscriptions} deleteSubscription={this.deleteSubscription}/> 
                     }/>
                 </Switch>
             </>

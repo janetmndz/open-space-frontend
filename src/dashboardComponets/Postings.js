@@ -6,6 +6,16 @@ class Postings extends React.Component {
         postings: []
     }
 
+    // componentDidUpdate () {
+    //     fetch('http://localhost:3000/posts', config)
+    //     .then(r => r.json())
+    //     .then(d => {
+    //         this.setState({
+    //             postings: d
+    //         })
+    //     })
+    // }
+
     componentDidMount(){
         const config = {
             method: 'GET',
