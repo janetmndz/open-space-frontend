@@ -6,6 +6,16 @@ class Postings extends React.Component {
         postings: []
     }
 
+    // componentDidUpdate () {
+    //     fetch('http://localhost:3000/posts', config)
+    //     .then(r => r.json())
+    //     .then(d => {
+    //         this.setState({
+    //             postings: d
+    //         })
+    //     })
+    // }
+
     componentDidMount(){
         const config = {
             method: 'GET',
@@ -13,7 +23,7 @@ class Postings extends React.Component {
                 "Authorization": this.props.token
             } 
         }
-        fetch('http://localhost:3000/posts', config)
+        fetch(`http://localhost:3000/postings/${this.props.currentUserId}`, config)
         .then(r => r.json())
         .then(d => {
             this.setState({
@@ -23,16 +33,11 @@ class Postings extends React.Component {
     }
 
     renderAllPostings = () => {
-        const subscriptionTopics = this.props.subscriptions.map(t => t.id)
-        return this.state.postings
-        .filter(pt => pt.user.id !== parseInt(this.props.currentUserId))
-        .map( pt => {
-            let postTopics = pt.topics.filter( t => !subscriptionTopics.includes(t.id))
-            return (postTopics.length === 0) 
-                ? <Post post={pt} key={pt.id} currentUserId={this.props.currentUserId}/> 
-                : null
-        })
+        return (this.state.postings.length !== 0) 
+            ? this.state.postings.map( pt => <Post post={pt} key={pt.id} currentUserId={this.props.currentUserId}/>) 
+            : <p>There are no posts to show</p>
     }
+
     render(){
         return(
             <section className="postings__container">
