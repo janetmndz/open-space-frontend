@@ -1,8 +1,47 @@
-.single__post{
+.single_post{
     border: 1px solid red;
     border-radius: 0.8rem;
     background: $white;
     padding: 1rem;
     font-size: 1.15rem;
     line-height: 1.3;
+    &__topic_list{
+        list-style: none;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 100%;
+        margin: 1rem auto;
+        .topic__label{
+            padding: 0.5rem;
+            margin: 0 0.5rem;
+            font-size: 0.75rem;
+            background: lighten($pink, 15%);
+            border-radius: 1rem;
+        }
+    }
+    .post__actions{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        justify-content: space-around;
+        width: 100%;
+        margin: 1rem auto;
+        button{
+            background: $pink;
+            color: $white;
+            border: 1px solid darken($pink, 3%);
+            border-radius: 0.5rem;
+            padding: 0.5rem;
+            margin: 1rem;
+            font-size: 0.95rem;
+            transition: all 500ms ease;
+            cursor: pointer;
+            &:hover{
+                color: $pink;
+                background: $white;
+            }
+        }
+    }
 }
