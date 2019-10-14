@@ -37,25 +37,12 @@ class MyPosts extends React.Component {
     }
     submitChanges = (e) => {
         e.preventDefault()
-        const config = {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                content: this.state.postContent,
-                topics: this.state.postTopics
-            })
-        }
-
-        fetch(`http://localhost:3000/posts/${this.state.editingPostId}`, config)
-        .then(r => r.json())
-        .then(d => {
-            this.setState({
-                editing: false,
-                postContent: d.content
-            })
+        this.props.updatePost({content: this.state.postContent, topics: this.state.postTopics}, this.state.editingPostId)
+        this.setState({
+            editing: false,
+            postContent: "",
+            editingPostId: "",
+            editingPostTopics: []
         })
     }
     cancelEdit = () => {

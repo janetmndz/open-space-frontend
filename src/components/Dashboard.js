@@ -60,6 +60,29 @@ class Dashboard extends React.Component{
         })
     }
 
+    updatePost = (post, postId) => {
+        const config = {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({post})
+        }
+
+        fetch(`http://localhost:3000/posts/${postId}`, config)
+        .then(r => r.json())
+        .then(d => {
+            let filteredPost = this.state.posts.filter(p => p.id !== d.id)
+            this.setState({
+                posts: [
+                    ...filteredPost,
+                    d
+                ]
+            })
+        })
+    }
+
     componentDidMount(){
         const config = {
             method: 'GET',
@@ -90,7 +113,7 @@ class Dashboard extends React.Component{
                         <Mailbox posts={this.state.posts} recieved_notes={this.state.recieved_notes}/> 
                     }/> */}
                     <Route exact path="/" render={ () => 
-                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId} topics={this.state.subscriptions}/>
+                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId} topics={this.state.subscriptions} updatePost={this.updatePost}/>
                     }/>
                     <Route exact path="/postings" render={ () => 
                         <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions}/> 
