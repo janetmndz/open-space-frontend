@@ -18,11 +18,11 @@ const Post = (props) => {
         <div className="post__actions">
             {(isThisCurrentUser()) 
             ? <button>Reply to this Post</button>
-            : <> <button>Edit this Post</button> <button>Delete this Post</button> </>}
+            : <> <button onClick={() => props.editPost(props.post.id)}>Edit this Post</button> <button onClick={() => props.deletePost(props.post.id)}>Delete this Post</button> </>}
         </div>)
     }
     return(
-        <div className="single_post">
+        <>
             <div className="single_post__content">
                 <p>{props.post.content}</p>
                 { renderWithUserName() }
@@ -32,7 +32,7 @@ const Post = (props) => {
             </div>
             { renderPostNav() }
             
-        </div>
+        </>
     )
 }
 export default Post
