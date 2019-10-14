@@ -1,9 +1,11 @@
 import React from 'react'
 import Post from '../postComponents/Post'
 import EditForm from '../postComponents/EditForm'
+import CreateForm from '../postComponents/CreateForm'
 
 class MyPosts extends React.Component {
     state = {
+        creating: false,
         editing: false,
         editingPost: {},
         editingPostTopics: [],
@@ -15,6 +17,11 @@ class MyPosts extends React.Component {
         if (window.confirm("Are you sure you wish to delete this post? You won't be able to see your notes from that post again.")){
             console.log("AHHH")
         }
+    }
+    toggleCreatePost = () => {
+        this.setState({
+            creating: !this.state.creating
+        })
     }
     editPost= (post_obj) => {
         this.setState({
@@ -65,7 +72,11 @@ class MyPosts extends React.Component {
                 {this.state.editing 
                     ? <EditForm topics={this.props.topics} postTopics={this.state.editingPostTopics} postContent={this.state.postContent} onSelectChange={this.onSelectChange} onChange={this.onChange} cancelEdit={this.cancelEdit} submitChanges={this.submitChanges}/> 
                     : null}
+                {this.state.creating 
+                    ? <CreateForm topics={this.props.topics} cancelCreate={this.toggleCreatePost} /> 
+                    : null}
                 <h1>Your Posts</h1>
+                <button className="newPostButton" onClick={this.toggleCreatePost}>Make a new post</button>
                 <div className="container">
                         {this.renderPosts()}
                 </div>

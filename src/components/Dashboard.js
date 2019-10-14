@@ -65,6 +65,7 @@ class Dashboard extends React.Component{
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': this.props.token,
                 'Accept': 'application/json'
             },
             body: JSON.stringify({post})
