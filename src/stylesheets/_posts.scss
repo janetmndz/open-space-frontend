@@ -1,23 +1,40 @@
 .single_post{
-    border: 1px solid red;
-    border-radius: 0.8rem;
-    background: $white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     padding: 1rem;
+    background: $white;
     font-size: 1.15rem;
     line-height: 1.3;
-    &__topic_list{
-        list-style: none;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        width: 100%;
-        margin: 1rem auto;
-        .topic__label{
-            padding: 0.5rem;
-            margin: 0 0.5rem;
-            font-size: 0.75rem;
-            background: lighten($pink, 15%);
-            border-radius: 1rem;
+    box-shadow: 3px 3px 3px darken($gray, 5%), darken($pink, 10%) 1px 1px 0px 0px, 10px 10px 5px transparentize(darken($gray, 10%), 0.3);
+    border-radius: 0.8rem;
+    &__content{
+        p:not(.author) {
+            font-size: 1.15rem;
+            line-height: 1.5;
+            margin: 1rem 0;
+        }
+        p.author{
+            font-size: 0.85rem;
+            color: lighten($black, 5%);
+            text-align: right;
+        }
+        .topic_list{
+            list-style: none;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            width: 100%;
+            margin: 1rem auto;
+            .topic__label{
+                padding: 0.5rem;
+                margin: 0 0.5rem;
+                font-size: 0.75rem;
+                letter-spacing: 1px;
+                line-height: 1;
+                background: lighten($pink, 30%);
+                border-radius: 1rem;
+            }
         }
     }
     .post__actions{
@@ -27,18 +44,19 @@
         align-items: center;
         justify-content: space-around;
         width: 100%;
-        margin: 1rem auto;
         button{
-            background: $pink;
+            background: darken($pink, 3%);
             color: $white;
             border: 1px solid darken($pink, 3%);
             border-radius: 0.5rem;
             padding: 0.5rem;
-            margin: 1rem;
+            margin: 0.5rem;
             font-size: 0.95rem;
+            font-weight: 500;
             transition: all 500ms ease;
+            letter-spacing: 1px;
             cursor: pointer;
-            &:hover{
+            &:hover, &:focus{
                 color: $pink;
                 background: $white;
             }

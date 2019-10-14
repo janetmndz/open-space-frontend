@@ -7,7 +7,7 @@ const Post = (props) => {
     const renderWithUserName = () => {
         if (!props.post.user.id) {return null}
         return ( isThisCurrentUser() ) 
-        ? <p>By: {props.post.user.username}</p>
+        ? <p className="author">submitted by: {props.post.user.username}</p>
         : null
     }
     const renderTopicLabels = () => {
@@ -23,11 +23,13 @@ const Post = (props) => {
     }
     return(
         <div className="single_post">
-            <p>{props.post.content}</p>
-            { renderWithUserName() }
-            <ul className="single_post__topic_list">
-                {renderTopicLabels()}
-            </ul>
+            <div className="single_post__content">
+                <p>{props.post.content}</p>
+                { renderWithUserName() }
+                <ul className="topic_list">
+                    {renderTopicLabels()}
+                </ul>
+            </div>
             { renderPostNav() }
             
         </div>
