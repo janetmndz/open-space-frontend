@@ -45,21 +45,42 @@
         justify-content: space-around;
         width: 100%;
         button{
-            background: darken($pink, 3%);
-            color: $white;
-            border: 1px solid darken($pink, 3%);
-            border-radius: 0.5rem;
-            padding: 0.5rem;
-            margin: 0.5rem;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: all 500ms ease;
-            letter-spacing: 1px;
-            cursor: pointer;
-            &:hover, &:focus{
-                color: $pink;
-                background: $white;
-            }
+            @extend %post_button;
         }
+    }
+}
+.editPost__container{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    background: transparentize($white, 0.5);
+    position: fixed;
+    top: 0;
+    left: 0;
+    .cancel_button{
+        @extend %post_button; 
+    }
+}
+form.editPostForm{
+    background: $gray;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+    height: 60%;
+    margin: 0 auto;
+    textarea{
+        width: 100%;
+        height: 90%;
+        font-size: 0.875rem;
+        line-height: 1.15;
+        padding: 0.5rem; 
+        resize: none;
+        border: 1px solid $black;
+        border-radius: 0.25rem;
+        margin: 1rem 0;
+    }
+    button{
+        @extend %post_button; 
     }
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import Navigation from './Navigation'
 
-import Mailbox from '../dashboardComponets/Mailbox'
+// import Mailbox from '../dashboardComponets/Mailbox'
 import MyPosts from '../dashboardComponets/MyPosts'
 import Postings from '../dashboardComponets/Postings'
 import Settings from '../dashboardComponets/Settings'
@@ -14,7 +14,7 @@ class Dashboard extends React.Component{
         posts: [],
         notes: [],
         recieved_notes: [],
-        subscriptions: [],
+        subscriptions: []
     }
 
     deleteSubscription = (subId) => {
@@ -79,17 +79,6 @@ class Dashboard extends React.Component{
             })
         }
         )
-        // .then(
-        //     fetch(`http://localhost:3000/topics/`, config)
-        //     .then( r => r.json())
-        //     .then(d => {
-        //         let subs = this.state.subscriptions.map(s => s.topic_id)
-        //         this.setState({
-        //             topics: d.filter( dt => !subs.includes(dt.id))
-        //         })
-        //     })
-        // )
-        
     }
 
     render(){
@@ -97,11 +86,11 @@ class Dashboard extends React.Component{
             <>
                 <Navigation logoutUser={this.props.logoutUser}/>
                 <Switch>
-                    <Route exact path="/" render={ () => 
+                    {/* <Route exact path="/" render={ () => 
                         <Mailbox posts={this.state.posts} recieved_notes={this.state.recieved_notes}/> 
-                    }/>
-                    <Route exac path="/myposts" render={ () => 
-                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId}/>
+                    }/> */}
+                    <Route exact path="/" render={ () => 
+                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId} topics={this.state.subscriptions}/>
                     }/>
                     <Route exact path="/postings" render={ () => 
                         <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions}/> 
