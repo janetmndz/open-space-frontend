@@ -1,17 +1,6 @@
 import React from 'react'
-// import Content from './Content'
 
-// class Post extends React.Component {
-//     render(){
-//         return(
-//             <div className="single_post">
-//                 {<Content post={this.props.post} key={this.props.id} currentUserId={this.props.currentUserId} editPost={this.props.editPost} deletePost={this.props.deletePost}/>}
-//             </div>
-//         )
-//     }
-// }
-
-const Post = (props) => {
+const Content = (props) => {
     const isThisCurrentUser = () => {
         return (props.post.user.id !== parseInt(props.currentUserId))
     }
@@ -29,11 +18,11 @@ const Post = (props) => {
         <div className="post__actions">
             {(isThisCurrentUser()) 
             ? <button>Reply to this Post</button>
-            : <> <button>Notes</button><button onClick={() => props.editPost(props.post)}>Edit</button> <button onClick={() => props.deletePost(props.post.id)}>Delete</button> </>}
+            : <> <button onClick={() => props.editPost(props.post)}>Edit this Post</button> <button onClick={() => props.deletePost(props.post.id)}>Delete this Post</button> </>}
         </div>)
     }
     return(
-        <div className="single_post">
+        <>
             <div className="single_post__content">
                 <p>{props.post.content}</p>
                 { renderWithUserName() }
@@ -43,7 +32,7 @@ const Post = (props) => {
             </div>
             { renderPostNav() }
             
-        </div>
+        </>
     )
 }
-export default Post
+export default Content

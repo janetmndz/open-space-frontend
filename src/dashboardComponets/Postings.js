@@ -6,16 +6,6 @@ class Postings extends React.Component {
         postings: []
     }
 
-    // componentDidUpdate () {
-    //     fetch('http://localhost:3000/posts', config)
-    //     .then(r => r.json())
-    //     .then(d => {
-    //         this.setState({
-    //             postings: d
-    //         })
-    //     })
-    // }
-
     componentDidMount(){
         const config = {
             method: 'GET',
@@ -40,7 +30,7 @@ class Postings extends React.Component {
 
     render(){
         return(
-            <section className="postings__container">
+            <section className="post__container">
                 <h1>Postings</h1>
                 <div className="container">
                     {this.renderAllPostings()}
