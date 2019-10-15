@@ -1,15 +1,4 @@
 import React from 'react'
-// import Content from './Content'
-
-// class Post extends React.Component {
-//     render(){
-//         return(
-//             <div className="single_post">
-//                 {<Content post={this.props.post} key={this.props.id} currentUserId={this.props.currentUserId} editPost={this.props.editPost} deletePost={this.props.deletePost}/>}
-//             </div>
-//         )
-//     }
-// }
 
 const Post = (props) => {
     const isThisCurrentUser = () => {
