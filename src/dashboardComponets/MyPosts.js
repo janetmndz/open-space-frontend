@@ -1,9 +1,11 @@
 import React from 'react'
 import Post from '../postComponents/Post'
 import EditForm from '../postComponents/EditForm'
+import CreateForm from '../postComponents/CreateForm'
 
 class MyPosts extends React.Component {
     state = {
+        creating: false,
         editing: false,
         editingPost: {},
         editingPostTopics: [],
@@ -11,10 +13,10 @@ class MyPosts extends React.Component {
         postTopics: []
     }
 
-    deletePost = () => {
-        if (window.confirm("Are you sure you wish to delete this post? You won't be able to see your notes from that post again.")){
-            console.log("AHHH")
-        }
+    toggleCreatePost = () => {
+        this.setState({
+            creating: !this.state.creating
+        })
     }
     editPost= (post_obj) => {
         this.setState({
@@ -35,16 +37,27 @@ class MyPosts extends React.Component {
             [e.target.name]: selected
         })
     }
+    submitnewPost = (e) => {
+        e.preventDefault()
+        this.props.createPost({ content: this.state.postContent, topics: this.state.postTopics})
+        this.setState({
+            creating: false,
+            postContent: "",
+            postTopics: []
+        })
+    }
     submitChanges = (e) => {
         e.preventDefault()
         this.props.updatePost({content: this.state.postContent, topics: this.state.postTopics}, this.state.editingPostId)
         this.setState({
             editing: false,
             postContent: "",
+            postTopics: [],
             editingPostId: "",
             editingPostTopics: []
         })
     }
+
     cancelEdit = () => {
         this.setState({
             editing: false,
@@ -56,16 +69,33 @@ class MyPosts extends React.Component {
 
 
     renderPosts = () => {
-        return this.props.posts.map(p => <Post post={p} key={p.id} currentUserId={this.props.currentUserId} editPost={this.editPost} deletePost={this.deletePost}/>)
+        return this.props.posts.map(p => <Post post={p} key={p.id} currentUserId={this.props.currentUserId} editPost={this.editPost} deletePost={this.props.deletePost}/>)
     }
 
     render(){
         return(
             <section className="post__container">
                 {this.state.editing 
-                    ? <EditForm topics={this.props.topics} postTopics={this.state.editingPostTopics} postContent={this.state.postContent} onSelectChange={this.onSelectChange} onChange={this.onChange} cancelEdit={this.cancelEdit} submitChanges={this.submitChanges}/> 
+                    ? <EditForm 
+                        topics={this.props.topics} 
+                        postTopics={this.state.editingPostTopics} 
+                        postContent={this.state.postContent} 
+                        onSelectChange={this.onSelectChange} 
+                        onChange={this.onChange} 
+                        cancelEdit={this.cancelEdit} 
+                        submitChanges={this.submitChanges}/> 
+                    : null}
+                {this.state.creating 
+                    ? <CreateForm 
+                        topics={this.props.topics} 
+                        postContent={this.state.postContent} 
+                        onSelectChange={this.onSelectChange} 
+                        onChange={this.onChange} 
+                        submitnewPost={this.submitnewPost} 
+                        cancelCreate={this.toggleCreatePost} /> 
                     : null}
                 <h1>Your Posts</h1>
+                <button className="newPostButton" onClick={this.toggleCreatePost}>Make a new post</button>
                 <div className="container">
                         {this.renderPosts()}
                 </div>

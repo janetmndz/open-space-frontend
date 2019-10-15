@@ -59,6 +59,8 @@
     left: 0;
     .cancel_button{
         @extend %post_button; 
+        display: block;
+        margin: 1rem auto;
     }
 }
 form.editPostForm{
@@ -83,4 +85,9 @@ form.editPostForm{
     button{
         @extend %post_button; 
     }
+}
+.newPostButton{
+    @extend %post_button;
+    display: block;
+    margin: 1rem auto;
 }

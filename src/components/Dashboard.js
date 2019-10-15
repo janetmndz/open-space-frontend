@@ -60,11 +60,35 @@ class Dashboard extends React.Component{
         })
     }
 
+    createPost = (post) => {
+        post.user_id = this.props.currentUserId
+        const config = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.props.token,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({post})
+        }
+        fetch('http://localhost:3000/posts/', config)
+        .then(r => r.json())
+        .then(d => {
+            this.setState({
+                posts: [
+                    ...this.state.posts,
+                    d
+                ].sort((a, b) => a.id - b.id)
+            })
+        })
+    }
+
     updatePost = (post, postId) => {
         const config = {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': this.props.token,
                 'Accept': 'application/json'
             },
             body: JSON.stringify({post})
@@ -78,9 +102,29 @@ class Dashboard extends React.Component{
                 posts: [
                     ...filteredPost,
                     d
-                ]
+                ].sort((a, b) => a.id - b.id)
             })
         })
+    }
+
+    deletePost = (postId) => {
+        if (window.confirm("Are you sure you wish to delete this post? You won't be able to see your notes from that post again.")){
+            const config = {
+                method: 'DELETE',
+                headers: {
+                    'Authorization': this.props.token,
+                }
+            }
+    
+            fetch(`http://localhost:3000/posts/${postId}`, config)
+            .then(r => r.json())
+            .then(d => {
+                let filteredPosts = this.state.posts.filter( p => p.id !== postId).sort((a, b) => a.id - b.id)
+                this.setState({
+                    posts: filteredPosts
+                })
+            })
+        }
     }
 
     componentDidMount(){
@@ -95,7 +139,7 @@ class Dashboard extends React.Component{
         .then(r => r.json())
         .then( d =>{
             this.setState({
-                posts: d.posts,
+                posts: d.posts.sort((a, b) => a.id - b.id),
                 notes: d.notes,
                 recieved_notes: d.recieved_notes,
                 subscriptions: d.subscriptions
@@ -113,7 +157,7 @@ class Dashboard extends React.Component{
                         <Mailbox posts={this.state.posts} recieved_notes={this.state.recieved_notes}/> 
                     }/> */}
                     <Route exact path="/" render={ () => 
-                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId} topics={this.state.subscriptions} updatePost={this.updatePost}/>
+                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId} topics={this.state.subscriptions} createPost={this.createPost} updatePost={this.updatePost} deletePost={this.deletePost}/>
                     }/>
                     <Route exact path="/postings" render={ () => 
                         <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions}/> 
