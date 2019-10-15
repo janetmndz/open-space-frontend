@@ -76,23 +76,23 @@ class MyPosts extends React.Component {
         return(
             <section className="post__container">
                 {this.state.editing 
-                    ? <EditForm 
+                    ? <div className="post__overlay"><EditForm 
                         topics={this.props.topics} 
                         postTopics={this.state.editingPostTopics} 
                         postContent={this.state.postContent} 
                         onSelectChange={this.onSelectChange} 
                         onChange={this.onChange} 
                         cancelEdit={this.cancelEdit} 
-                        submitChanges={this.submitChanges}/> 
+                        submitChanges={this.submitChanges}/></div>
                     : null}
                 {this.state.creating 
-                    ? <CreateForm 
+                    ? <div className="post__overlay"><CreateForm 
                         topics={this.props.topics} 
                         postContent={this.state.postContent} 
                         onSelectChange={this.onSelectChange} 
                         onChange={this.onChange} 
                         submitnewPost={this.submitnewPost} 
-                        cancelCreate={this.toggleCreatePost} /> 
+                        cancelCreate={this.toggleCreatePost} /></div>
                     : null}
                 <h1>Your Posts</h1>
                 <button className="newPostButton" onClick={this.toggleCreatePost}>Make a new post</button>
