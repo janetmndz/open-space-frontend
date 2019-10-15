@@ -17,7 +17,7 @@ const Post = (props) => {
         return( 
         <div className="post__actions">
             {(isThisCurrentUser()) 
-            ? <button>Reply to this Post</button>
+            ? <button onClick={() => props.replyNote(props.post.id)}>Reply to this Post</button>
             : <> <button>Notes</button><button onClick={() => props.editPost(props.post)}>Edit</button> <button onClick={() => props.deletePost(props.post.id)}>Delete</button> </>}
         </div>)
     }

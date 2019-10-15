@@ -1,9 +1,49 @@
 import React from 'react'
 import Post from '../postComponents/Post'
+import ReplyForm from '../notesComponents/ReplyForm'
 
 class Postings extends React.Component {
     state = {
+        replying: false,
+        replyingPostId: null,
+        replyContent: '',
         postings: []
+    }
+
+    replyNote = (postId) => {
+        this.setState({
+            replying: true,
+            replyingPostId: postId
+        })
+    }
+
+    cancelReply = () => {
+        this.setState({
+            replying: false,
+            replyingPostId: null
+        })
+    }
+
+    onChange = (e) => {
+        console.log(e.target.name)
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    submitReply = (e) => {
+        e.preventDefault()
+        let note = {
+            post_id: this.state.replyingPostId,
+            content: this.state.replyContent
+        }
+        this.props.submitNote(note)
+    }
+
+    renderAllPostings = () => {
+        return (this.state.postings.length !== 0) 
+            ? this.state.postings.map( pt => <Post post={pt} key={pt.id} currentUserId={this.props.currentUserId} replyNote={this.replyNote}/>) 
+            : <p>There are no posts to show</p>
     }
 
     componentDidMount(){
@@ -22,15 +62,13 @@ class Postings extends React.Component {
         })
     }
 
-    renderAllPostings = () => {
-        return (this.state.postings.length !== 0) 
-            ? this.state.postings.map( pt => <Post post={pt} key={pt.id} currentUserId={this.props.currentUserId}/>) 
-            : <p>There are no posts to show</p>
-    }
 
     render(){
         return(
             <section className="post__container">
+                {this.state.replying 
+                    ? <div className="post__overlay"><ReplyForm cancelReply={this.cancelReply} submitReply={this.submitReply} onChange={this.onChange} replyContent={this.state.replyContent}/></div>
+                    : null}
                 <h1>Postings</h1>
                 <div className="container">
                     {this.renderAllPostings()}

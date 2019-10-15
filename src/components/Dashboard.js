@@ -60,6 +60,10 @@ class Dashboard extends React.Component{
         })
     }
 
+    submitNote = (note) => {
+        console.log(note)
+    }
+
     createPost = (post) => {
         post.user_id = this.props.currentUserId
         const config = {
@@ -160,7 +164,7 @@ class Dashboard extends React.Component{
                         <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId} topics={this.state.subscriptions} createPost={this.createPost} updatePost={this.updatePost} deletePost={this.deletePost}/>
                     }/>
                     <Route exact path="/postings" render={ () => 
-                        <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions}/> 
+                        <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions} submitNote={this.submitNote}/> 
                     }/>
                     <Route exact path="/settings" render={ () => 
                         <Settings token={this.props.token} currentUserId={this.props.currentUserId} addSubscription={this.addSubscription} subscriptions={this.state.subscriptions} deleteSubscription={this.deleteSubscription}/> 
