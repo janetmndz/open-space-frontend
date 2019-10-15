@@ -35,9 +35,15 @@ class Postings extends React.Component {
         e.preventDefault()
         let note = {
             post_id: this.state.replyingPostId,
-            content: this.state.replyContent
+            content: this.state.replyContent,
+            user_id: this.props.currentUserId
         }
         this.props.submitNote(note)
+        this.setState({
+            replying: false,
+            replyingPostId: null,
+            replyContent: ''
+        })
     }
 
     renderAllPostings = () => {

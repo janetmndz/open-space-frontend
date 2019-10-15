@@ -69,6 +69,8 @@ class MyPosts extends React.Component {
 
 
     renderPosts = () => {
+        const notes = this.props.recieved_notes
+        console.log(notes)
         return this.props.posts.map(p => <Post post={p} key={p.id} currentUserId={this.props.currentUserId} editPost={this.editPost} deletePost={this.props.deletePost}/>)
     }
 

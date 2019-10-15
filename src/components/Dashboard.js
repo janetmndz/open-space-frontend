@@ -61,7 +61,20 @@ class Dashboard extends React.Component{
     }
 
     submitNote = (note) => {
-        console.log(note)
+        const config = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': this.props.token,
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({note})
+        }
+        fetch('http://localhost:3000/notes/', config)
+        .then(r => r.json())
+        .then(d => {
+            window.alert(d.message)
+        })
     }
 
     createPost = (post) => {
@@ -142,10 +155,14 @@ class Dashboard extends React.Component{
         fetch(`http://localhost:3000/users/${this.props.currentUserId}`, config)
         .then(r => r.json())
         .then( d =>{
+            // let notes_obj = {}
+            // d.post.
+            console.log(d.recieved_notes)
+            console.log(d.posts)
             this.setState({
                 posts: d.posts.sort((a, b) => a.id - b.id),
                 notes: d.notes,
-                recieved_notes: d.recieved_notes,
+                recieved_notes: d.posts.map( p => d.recieved_notes.filter( rn => rn.post_id === p.id)),
                 subscriptions: d.subscriptions
             })
         }
@@ -161,7 +178,7 @@ class Dashboard extends React.Component{
                         <Mailbox posts={this.state.posts} recieved_notes={this.state.recieved_notes}/> 
                     }/> */}
                     <Route exact path="/" render={ () => 
-                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId} topics={this.state.subscriptions} createPost={this.createPost} updatePost={this.updatePost} deletePost={this.deletePost}/>
+                        <MyPosts posts={this.state.posts} currentUserId={this.props.currentUserId} recieved_notes={this.state.recieved_notes} topics={this.state.subscriptions} createPost={this.createPost} updatePost={this.updatePost} deletePost={this.deletePost}/>
                     }/>
                     <Route exact path="/postings" render={ () => 
                         <Postings token={this.props.token} currentUserId={this.props.currentUserId} subscriptions={this.state.subscriptions} submitNote={this.submitNote}/> 
