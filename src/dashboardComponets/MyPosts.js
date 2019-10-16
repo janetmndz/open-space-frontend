@@ -1,10 +1,13 @@
 import React from 'react'
 import Post from '../postComponents/Post'
+import ShowNotes from '../notesComponents/ShowNotes' 
 import EditForm from '../postComponents/EditForm'
 import CreateForm from '../postComponents/CreateForm'
 
 class MyPosts extends React.Component {
     state = {
+        showing: false,
+        showingNotes: [],
         creating: false,
         editing: false,
         editingPost: {},
@@ -67,16 +70,33 @@ class MyPosts extends React.Component {
         })
     }
 
+    showNotes = (notes) => {
+        if (notes.length === 0) {return}
+        this.setState({
+            showing: true,
+            showingNotes: notes
+        }) 
+    }
+
+    cancelShow = () => {
+        this.setState({
+            showing: false,
+            showingNotes: []
+        })
+    }
 
     renderPosts = () => {
-        const notes = this.props.recieved_notes
-        console.log(notes)
-        return this.props.posts.map(p => <Post post={p} key={p.id} currentUserId={this.props.currentUserId} editPost={this.editPost} deletePost={this.props.deletePost}/>)
+        return this.props.posts.map(p => <Post post={p} key={p.id} currentUserId={this.props.currentUserId} showNotes={this.showNotes} editPost={this.editPost} deletePost={this.props.deletePost}/>)
     }
 
     render(){
         return(
             <section className="post__container">
+                {this.state.showing 
+                    ? <div className="post__overlay"><ShowNotes 
+                        notes={this.state.showingNotes}
+                        cancelShow={this.cancelShow}/></div> 
+                    : null}
                 {this.state.editing 
                     ? <div className="post__overlay"><EditForm 
                         topics={this.props.topics} 

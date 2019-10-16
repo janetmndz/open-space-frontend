@@ -10,7 +10,7 @@ const CreateForm = (props) => {
                 <label htmlFor="postContent">Post Content</label>
                 <textarea id="postContent" name="postContent" value={props.postContent} onChange={props.onChange}></textarea>
                 <label htmlFor="postTopics">Select Topics</label>
-                <select id="postTopics" name="postTopics" multiple size="4" onChange={props.onSelectChange}>
+                <select id="postTopics" name="postTopics" multiple size="15" onChange={props.onSelectChange}>
                     {makeOptions()}
                 </select>
                 <input type="submit" name="submit" value="Submit Post"/>
