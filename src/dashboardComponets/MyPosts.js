@@ -1,10 +1,13 @@
 import React from 'react'
 import Post from '../postComponents/Post'
+import ShowNotes from '../notesComponents/ShowNotes' 
 import EditForm from '../postComponents/EditForm'
 import CreateForm from '../postComponents/CreateForm'
 
 class MyPosts extends React.Component {
     state = {
+        showing: false,
+        showingNotes: [],
         creating: false,
         editing: false,
         editingPost: {},
@@ -67,32 +70,51 @@ class MyPosts extends React.Component {
         })
     }
 
+    showNotes = (notes) => {
+        if (notes.length === 0) {return}
+        this.setState({
+            showing: true,
+            showingNotes: notes
+        }) 
+    }
+
+    cancelShow = () => {
+        this.setState({
+            showing: false,
+            showingNotes: []
+        })
+    }
 
     renderPosts = () => {
-        return this.props.posts.map(p => <Post post={p} key={p.id} currentUserId={this.props.currentUserId} editPost={this.editPost} deletePost={this.props.deletePost}/>)
+        return this.props.posts.map(p => <Post post={p} key={p.id} currentUserId={this.props.currentUserId} showNotes={this.showNotes} editPost={this.editPost} deletePost={this.props.deletePost}/>)
     }
 
     render(){
         return(
             <section className="post__container">
+                {this.state.showing 
+                    ? <div className="post__overlay"><ShowNotes 
+                        notes={this.state.showingNotes}
+                        cancelShow={this.cancelShow}/></div> 
+                    : null}
                 {this.state.editing 
-                    ? <EditForm 
+                    ? <div className="post__overlay"><EditForm 
                         topics={this.props.topics} 
                         postTopics={this.state.editingPostTopics} 
                         postContent={this.state.postContent} 
                         onSelectChange={this.onSelectChange} 
                         onChange={this.onChange} 
                         cancelEdit={this.cancelEdit} 
-                        submitChanges={this.submitChanges}/> 
+                        submitChanges={this.submitChanges}/></div>
                     : null}
                 {this.state.creating 
-                    ? <CreateForm 
+                    ? <div className="post__overlay"><CreateForm 
                         topics={this.props.topics} 
                         postContent={this.state.postContent} 
                         onSelectChange={this.onSelectChange} 
                         onChange={this.onChange} 
                         submitnewPost={this.submitnewPost} 
-                        cancelCreate={this.toggleCreatePost} /> 
+                        cancelCreate={this.toggleCreatePost} /></div>
                     : null}
                 <h1>Your Posts</h1>
                 <button className="newPostButton" onClick={this.toggleCreatePost}>Make a new post</button>

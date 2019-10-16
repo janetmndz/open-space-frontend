@@ -12,8 +12,8 @@ A React frontend for Mod5 final project at Flatiron School.
 - [x] Index of all posts to a user
 - [ ] Show page for each post with comments
 - [x] Subscribe ability for topics
-- [ ] Ability to add comments to posts
-- [ ] CRUD for posts
+- [x] Ability to add comments to posts
+- [x] CRUD for posts
 - [x] Auth
 - [x] Nav Bar
 - [x] Custom CSS
