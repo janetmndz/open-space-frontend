@@ -25,7 +25,6 @@ class Postings extends React.Component {
     }
 
     onChange = (e) => {
-        console.log(e.target.name)
         this.setState({
             [e.target.name]: e.target.value
         })
@@ -62,7 +61,6 @@ class Postings extends React.Component {
         fetch(`http://localhost:3000/postings/${this.props.currentUserId}`, config)
         .then(r => r.json())
         .then(d => {
-            console.log("from postings:", d)
             this.setState({
                 postings: d
             })
