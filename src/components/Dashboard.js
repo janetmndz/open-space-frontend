@@ -72,6 +72,10 @@ class Dashboard extends React.Component{
         fetch('http://localhost:3000/notes/', config)
         .then(r => r.json())
         .then(d => {
+            if(d.errors){
+                window.alert(d.errors.join('\n'))
+                return;
+            }
             window.alert(d.message)
         })
     }
