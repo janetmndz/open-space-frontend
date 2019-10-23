@@ -2,6 +2,8 @@ import React from 'react'
 
 const SignUpForm = (props) => {
     return(
+        <>
+        <h1 className="logo_title">Open Space</h1>
         <section className="signin__container">
             <h1>Sign Up</h1>
             <form onSubmit={ props.signUpSubmit }>
@@ -25,8 +27,9 @@ const SignUpForm = (props) => {
                         value={ props.state.password } />
                 <input type="submit" value="Sign Up" />
             </form>
-            <button onClick={props.changeSignIn}>I already have an account</button>
+            <button className="change_form" onClick={props.changeSignIn}>I already have an account</button>
         </section>
+        </>
     )
 }
 
