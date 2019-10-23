@@ -1,0 +1,29 @@
+.signin__container{
+    width: 60%;
+    height: auto;
+    background: $white;
+    border-radius: 0.5rem;
+    form{
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+        height: 60%;
+        margin: 0 auto;
+        label{
+            font-size: 1.13rem;
+            line-height: 1.5;
+        }
+        input[type='text'], input[type='password']{
+            padding:0.5rem;
+            font-size: 1.13rem;
+            border: 1px solid $gray;
+            border-radius: 0.5rem;
+            line-height: 1.15;
+            letter-spacing: 1px;
+        }
+        input[type="submit"]{
+            @extend %post_button
+        }
+    }
+}

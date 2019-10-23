@@ -2,8 +2,8 @@ import React from 'react'
 
 const SignInForm = (props) => {
     return(
-        <section>
-            <h1>Hi! I am from the SignIn!</h1>
+        <section className="signin__container">
+            <h1>Sign In</h1>
             <form onSubmit={ props.signInSubmit }>
                 <label  htmlFor="email">Email</label>
                 <input  id="email" 
@@ -19,7 +19,7 @@ const SignInForm = (props) => {
                         value={ props.state.password } />
                 <input type="submit" value="Sign In" />
             </form>
-            <button onClick={props.changeSignIn}>I want to Sign Up!</button>
+            <button onClick={props.changeSignIn}>Create new account</button>
         </section>
     )
 }

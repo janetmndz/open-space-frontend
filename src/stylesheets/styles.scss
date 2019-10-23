@@ -32,11 +32,18 @@ $gray: #ECE6EF;
     color: $black;
 }
 
-html, body{
-    background: $gray;
+html{
+    background-color: #413C58;
+    background: url('../assets/Endless-Constellation.svg');
     font-family: 'Monstserrat', sans-serif;
 }
 
+#root{
+    padding-top: 1px;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+@import './signin';
 @import './navigation';
 @import './dashboard';
 @import './posts';
