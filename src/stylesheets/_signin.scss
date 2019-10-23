@@ -1,9 +1,11 @@
 .logo_title{
     color: $white;
-    font-size: 2.5rem;
-    line-height: 2rem;
+    font-size: 5rem;
+    margin: 1rem 0;
+    line-height: 2;
     text-align: center;
     text-shadow: 0 0 1rem #fefefe;
+    animation: 4500ms infinite alternate glow
 }
 .signin__container{
     width: 60%;
