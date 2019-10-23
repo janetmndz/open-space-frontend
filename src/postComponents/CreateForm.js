@@ -9,6 +9,7 @@ const CreateForm = (props) => {
             <form className="post_form" onSubmit={props.submitnewPost}>
                 <label htmlFor="postContent">Post Content</label>
                 <textarea id="postContent" name="postContent" value={props.postContent} onChange={props.onChange}></textarea>
+                <p className="character_remaining">{140 - props.postContent.length} characters remaining</p>
                 <label htmlFor="postTopics">Select Topics</label>
                 <select id="postTopics" name="postTopics" multiple size="15" onChange={props.onSelectChange}>
                     {makeOptions()}
