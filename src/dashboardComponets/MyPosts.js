@@ -13,7 +13,7 @@ class MyPosts extends React.Component {
         editingPost: {},
         editingPostTopics: [],
         postContent: "",
-        postTopics: []
+        postTopics: [],
     }
 
     toggleCreatePost = () => {
@@ -26,13 +26,17 @@ class MyPosts extends React.Component {
             editing: true,
             editingPostId: post_obj.id,
             editingPostTopics: post_obj.topics,
-            postContent: post_obj.content
+            postContent: post_obj.content,
+            // characterLimit: post_obj.content.length < 140 ? false : true
         })
     }
     onChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        console.log(e.target.value.length)
+        if (e.target.value.length <= 140){
+            this.setState({
+                postContent: e.target.value,
+            })
+        }
     }
     onSelectChange = (e) => {
         let selected = [...e.target.options].filter(option => option.selected).map(option => option.value)
@@ -101,7 +105,8 @@ class MyPosts extends React.Component {
                     ? <div className="post__overlay"><EditForm 
                         topics={this.props.topics} 
                         postTopics={this.state.editingPostTopics} 
-                        postContent={this.state.postContent} 
+                        postContent={this.state.postContent}
+                        // characterLimit={this.state.characterLimit}
                         onSelectChange={this.onSelectChange} 
                         onChange={this.onChange} 
                         cancelEdit={this.cancelEdit} 
