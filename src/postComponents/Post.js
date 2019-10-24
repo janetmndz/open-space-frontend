@@ -1,5 +1,5 @@
 import React from 'react'
-import reply_svg from '../assets/message-square.svg'
+// import reply_svg from '../assets/message-square.svg'
 
 const Post = (props) => {
     const isThisCurrentUser = () => {

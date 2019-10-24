@@ -25,9 +25,11 @@ class Postings extends React.Component {
     }
 
     onChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
+        if (e.target.value.length < 140){
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
     submitReply = (e) => {
