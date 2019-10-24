@@ -4,9 +4,20 @@
 $display-font: 'Judson', sans-serif;
 $black: #171B37;
 $white: #FAFAFA;
-$pink: #6F5081;
+$pink: #B392B7;
 $gray: #ECE6EF;
 
+@keyframes glow{
+    0%{
+        text-shadow: 0 0 1rem transparentize($white,0.3);
+    }
+    50%{ 
+        text-shadow: 0 0 1.5rem transparentize($white,0.3);
+    }
+    100%{
+        text-shadow: 0 0 1rem transparentize($white,0.3);
+    }
+}
 %post_button{
     background: darken($pink, 3%);
     color: $white;
@@ -18,12 +29,18 @@ $gray: #ECE6EF;
     font-weight: 500;
     transition: all 500ms ease;
     letter-spacing: 1px;
+    // display: flex;
+    // flex-direction: row;
+    // align-content: flex-start;
+    // align-items: center;
+    // justify-content: space-between;
     cursor: pointer;
     &:hover, &:focus{
         color: $pink;
         background: $white;
     }
 }
+
 
 *{
     box-sizing: border-box;
@@ -32,12 +49,37 @@ $gray: #ECE6EF;
     color: $black;
 }
 
-html, body{
-    background: $gray;
+html{
+    background-color: #413C58;
+    background: url('../assets/Endless-Constellation.svg');
     font-family: 'Monstserrat', sans-serif;
 }
 
+#root{
+    position: relative;
+    padding-top: 1px;
+    min-width: 100vw;
+    min-height: 100vh;
+}
+
+footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 0.5rem 0;
+    width: 100%;
+    height: 3rem;
+    background: lighten($pink, 10%);
+    p{
+        text-align: center;
+        line-height: 2;
+        font-size: 1rem;
+        background: transparent;
+    }
+}
+@import './signin';
 @import './navigation';
 @import './dashboard';
 @import './posts';
 @import './notes';
+@import './subscription';

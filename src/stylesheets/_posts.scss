@@ -45,6 +45,7 @@
         justify-content: space-around;
         width: 100%;
         button{
+            width: 30%;
             @extend %post_button;
         }
     }
@@ -64,7 +65,7 @@
         position: relative;
         background: $gray;
         width: 70%;
-        max-width: 850px;
+        max-width: 600px;
         height: 60vh;
         margin: 0 auto;
         display: flex;
@@ -75,8 +76,8 @@
             padding: 1rem;
             display: flex;
             flex-direction: column;
-            width: 75%;
-            height: 60%;
+            width: 90%;
+            height: 85%;
             margin: 0 auto;
             label{
                 font-size: 1.25rem;
@@ -84,19 +85,26 @@
             }
             textarea{
                 width: 100%;
-                height: 90%;
-                font-size: 0.875rem;
-                line-height: 1.15;
-                padding: 0.5rem; 
+                height: 30rem;
+                font-size: 1.1rem;
+                line-height: 1.5;
+                padding: 1rem; 
                 resize: none;
                 border: 1px solid $black;
                 border-radius: 0.25rem;
-                margin: 1rem 0;
+                margin: 1rem 0 0.25rem 0;
+            }
+            .character_remaining{
+                text-align: right;
+                font-size: 0.875rem;
+                color: red;
+                margin-bottom: 1rem;
             }
             select{
                 padding: 0.5rem;
                 border: 1px solid $black;
                 border-radius: 0.25rem;
+                size: 30;
                 option{
                     padding: 0.25rem;
                     font-size: 0.75rem;
@@ -124,29 +132,6 @@
         }
     }
 }
-// form.editPostForm{
-//     background: $gray;
-//     padding: 1rem;
-//     display: flex;
-//     flex-direction: column;
-//     width: 75%;
-//     height: 60%;
-//     margin: 0 auto;
-//     textarea{
-//         width: 100%;
-//         height: 90%;
-//         font-size: 0.875rem;
-//         line-height: 1.15;
-//         padding: 0.5rem; 
-//         resize: none;
-//         border: 1px solid $black;
-//         border-radius: 0.25rem;
-//         margin: 1rem 0;
-//     }
-//     button{
-//         @extend %post_button; 
-//     }
-// }
 .newPostButton{
     @extend %post_button;
     display: block;

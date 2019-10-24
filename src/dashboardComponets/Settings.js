@@ -52,7 +52,7 @@ class Settings extends React.Component {
                 'Authorization': this.props.token,
             }
         }
-        fetch(`http://localhost:3000/unsubscribed/${this.props.currentUserId}`, config)
+        fetch(`https://openspace-api.herokuapp.com/unsubscribed/${this.props.currentUserId}`, config)
         .then(r => r.json())
         .then(d => {
             this.setState({
@@ -64,14 +64,19 @@ class Settings extends React.Component {
 
     render() {
         return(
-            <section>
+            <section className="subscriptions">
                 <h1>Settings</h1>
+                <div className="subscriptions_description">
+                    <p>
+                        If you don't want to see posts related to a topic, just remove it from your subscriptions. 
+                    </p>
+                </div>
                 <h2>Your subscriptions:</h2>
-                <ul>
+                <ul className="subscription_list">
                     { this.renderSubscriptions() }
                 </ul>
                 <h2>Add a new Subscription</h2>
-                <ul>
+                <ul className="topics_list">
                     { this.renderTopics() }
                 </ul>
             </section>

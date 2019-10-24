@@ -58,7 +58,7 @@ class Postings extends React.Component {
                 "Authorization": this.props.token
             } 
         }
-        fetch(`http://localhost:3000/postings/${this.props.currentUserId}`, config)
+        fetch(`https://openspace-api.herokuapp.com/postings/${this.props.currentUserId}`, config)
         .then(r => r.json())
         .then(d => {
             this.setState({

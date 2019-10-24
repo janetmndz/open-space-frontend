@@ -1,4 +1,5 @@
 import React from 'react'
+// import logo from '../assets/rocket.svg'
 import SignInForm from './SignInForm'
 import SignUpForm from './SignUpForm'
 
@@ -25,7 +26,7 @@ class SignIn extends React.Component{
                 password: this.state.password
             })
         }
-        fetch('http://localhost:3000/tokens', config)
+        fetch('https://openspace-api.herokuapp.com/tokens', config)
         .then(r => r.json())
         .then(d => {
             this.setState({
@@ -63,7 +64,7 @@ class SignIn extends React.Component{
             })
         }
 
-        fetch('http://localhost:3000/users', config)
+        fetch('https://openspace-api.herokuapp.com/users', config)
         .then(r => r.json())
         .then(d => {
             this.setState({
@@ -84,14 +85,28 @@ class SignIn extends React.Component{
     }
 
     mapErrors = () => {
-        return this.state.errors.map( err => <p> {err} </p>)
+        return <div className="signIn__error_box">{this.state.errors.map( err => <p> {err} </p>)}</div>
     }
 
     render(){
         return(
             <>
-            <div className="signIn__error_box">{this.state.errors.length > 0 ? this.mapErrors() : null}</div>
-            {this.state.signIn ? <SignInForm changeSignIn={this.changeSignIn} signInSubmit={this.signInSubmit} onChange={this.onChange} state={this.state}/> : <SignUpForm changeSignIn={this.changeSignIn} signUpSubmit={this.signUpSubmit} onChange={this.onChange} state={this.state}/>}
+            <h1 className="logo_title">Open Space</h1>
+            {/* <img className="logo_svg" src={logo} alt="Open Space rocket logo"/> */}
+            {this.state.errors.length > 0 
+                ? this.mapErrors() 
+                : null}
+            {this.state.signIn 
+                ? <SignInForm 
+                    changeSignIn={this.changeSignIn} 
+                    signInSubmit={this.signInSubmit} 
+                    onChange={this.onChange} 
+                    state={this.state}/> 
+                : <SignUpForm 
+                    changeSignIn={this.changeSignIn} 
+                    signUpSubmit={this.signUpSubmit} 
+                    onChange={this.onChange} 
+                    state={this.state}/>}
             </>
         )
     }

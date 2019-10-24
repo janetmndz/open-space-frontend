@@ -1,0 +1,101 @@
+.logo_title{
+    color: $white;
+    font-size: 5rem;
+    margin: 1rem 0;
+    line-height: 2;
+    text-align: center;
+    text-shadow: 0 0 1rem #fefefe;
+    animation: 4500ms infinite alternate glow
+}
+.logo_svg{
+    width: 10rem;
+    height: 10rem;
+    margin: 0 auto;
+    display: block;
+}
+.signIn__error_box{
+    width: 50%;
+    max-width: 580px;
+    margin: 2rem auto;
+    padding: 7px;
+    color: #D63301;
+    background-color: #FFCCBA;
+    border: 1px solid red;
+    p{
+        font-size: 0.975rem;
+        line-height: 1.15rem;
+    }
+}
+.signin__container{
+    width: 60%;
+    max-width: 580px;
+    height: auto;
+    background: $white;
+    border-radius: 0.5rem;
+    padding-bottom: 1rem;
+    h2{
+        line-height: 2;
+        font-size: 2.5rem;
+        letter-spacing: 1px;
+        text-align: center;
+        text-transform: smallcaps;
+        font-family: $display-font;
+        color: $black;
+    }
+    form{
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        width: 75%;
+        height: 60%;
+        margin: 0 auto;
+        label{
+            font-size: 1.13rem;
+            line-height: 1.5;
+        }
+        input[type='text'], input[type='password']{
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.13rem;
+            border: 1px solid $gray;
+            border-radius: 0.5rem;
+            line-height: 1.15;
+            letter-spacing: 1px;
+        }
+        input[type="submit"]{
+            @extend %post_button;
+            width: 45%;
+            margin: 0 auto;
+        }
+    }
+    .change_form{
+        position: relative;
+        display: block;
+        margin: 0 auto;
+        border: 1px solid transparent;
+        background: transparent;
+        padding: 0 0.5rem;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all ease 300ms;
+        &::before{
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left:0;
+            width: 100%;
+            height: 15%;
+            background: transparent;
+            transform: translateY(100%);
+            transform-origin: bottom center;
+            transition: all ease 300ms;
+        }
+        &:hover, &:focus{
+            &::before{
+                background: transparentize($pink, 0.25);
+                transform: translateY(10%);
+            }
+        }
+    }
+}

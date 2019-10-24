@@ -2,8 +2,10 @@ import React from 'react'
 
 const SignUpForm = (props) => {
     return(
-        <section>
-            <h1>Hi! I am from the Sign Up!</h1>
+        <>
+        {/* <h1 className="logo_title">Open Space</h1> */}
+        <section className="signin__container">
+            <h2>Sign Up</h2>
             <form onSubmit={ props.signUpSubmit }>
                 <label  htmlFor="email">Email</label>
                 <input  id="email" 
@@ -23,10 +25,11 @@ const SignUpForm = (props) => {
                         onChange={ props.onChange } 
                         name="password" 
                         value={ props.state.password } />
-                <input type="submit" value="Sign up" />
+                <input type="submit" value="Sign Up" />
             </form>
-            <button onClick={props.changeSignIn}>I want to Sign In!</button>
+            <button className="change_form" onClick={props.changeSignIn}>I already have an account</button>
         </section>
+        </>
     )
 }
 
