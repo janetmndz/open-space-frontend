@@ -24,7 +24,7 @@ class Dashboard extends React.Component{
             }
         }
 
-        fetch(`http://localhost:3000/subscriptions/${subId}`, config)
+        fetch(`https://openspace-api.herokuapp.com/subscriptions/${subId}`, config)
         .then(r => r.json())
         .then(d => {
             let newSubs = this.state.subscriptions.filter(s => s.id !== subId)
@@ -47,7 +47,7 @@ class Dashboard extends React.Component{
             })
         }
 
-        fetch(`http://localhost:3000/subscriptions/`, config)
+        fetch(`https://openspace-api.herokuapp.com/subscriptions/`, config)
         .then(r => r.json())
         .then(d => {
             this.setState({
@@ -69,7 +69,7 @@ class Dashboard extends React.Component{
             },
             body: JSON.stringify({note})
         }
-        fetch('http://localhost:3000/notes/', config)
+        fetch('https://openspace-api.herokuapp.com/notes/', config)
         .then(r => r.json())
         .then(d => {
             if(d.errors){
@@ -91,7 +91,7 @@ class Dashboard extends React.Component{
             },
             body: JSON.stringify({post})
         }
-        fetch('http://localhost:3000/posts/', config)
+        fetch('https://openspace-api.herokuapp.com/posts/', config)
         .then(r => r.json())
         .then(d => {
             this.setState({
@@ -114,7 +114,7 @@ class Dashboard extends React.Component{
             body: JSON.stringify({post})
         }
 
-        fetch(`http://localhost:3000/posts/${postId}`, config)
+        fetch(`https://openspace-api.herokuapp.com/posts/${postId}`, config)
         .then(r => r.json())
         .then(d => {
             let filteredPost = this.state.posts.filter(p => p.id !== d.id)
@@ -136,7 +136,7 @@ class Dashboard extends React.Component{
                 }
             }
     
-            fetch(`http://localhost:3000/posts/${postId}`, config)
+            fetch(`https://openspace-api.herokuapp.com/posts/${postId}`, config)
             .then(r => r.json())
             .then(d => {
                 let filteredPosts = this.state.posts.filter( p => p.id !== postId).sort((a, b) => a.id - b.id)
@@ -155,7 +155,7 @@ class Dashboard extends React.Component{
             }
         }
         
-        fetch(`http://localhost:3000/users/${this.props.currentUserId}`, config)
+        fetch(`https://openspace-api.herokuapp.com/users/${this.props.currentUserId}`, config)
         .then(r => r.json())
         .then( d =>{
             this.setState({

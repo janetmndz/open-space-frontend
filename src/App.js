@@ -46,7 +46,9 @@ class App extends React.Component {
             {this.isLoggedIn() ? <Dashboard currentUserId={this.state.currentUserId} token={this.state.token} logoutUser={this.logoutUser}/> : <SignIn signInUser={this.signInUser}/>}
           </main>
         )}/>
-
+        <footer>
+          <p>Made with <span role="img" aria-label="love" style={{color: 'red'}}>♥</span> by Janet Mendez</p>
+        </footer>
       </Router>
     )
   }

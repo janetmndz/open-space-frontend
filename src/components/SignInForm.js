@@ -3,7 +3,7 @@ import React from 'react'
 const SignInForm = (props) => {
     return(
         <>
-        <h1 className="logo_title">Open Space</h1>
+        {/* <h1 className="logo_title">Open Space</h1> */}
         <section className="signin__container">
             <h2>Sign In</h2>
             <form onSubmit={ props.signInSubmit }>

@@ -3,9 +3,9 @@ import React from 'react'
 const SignUpForm = (props) => {
     return(
         <>
-        <h1 className="logo_title">Open Space</h1>
+        {/* <h1 className="logo_title">Open Space</h1> */}
         <section className="signin__container">
-            <h1>Sign Up</h1>
+            <h2>Sign Up</h2>
             <form onSubmit={ props.signUpSubmit }>
                 <label  htmlFor="email">Email</label>
                 <input  id="email" 
