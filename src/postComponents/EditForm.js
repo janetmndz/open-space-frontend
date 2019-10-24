@@ -23,6 +23,7 @@ const EditPostForm = (props) => {
                 <select id="postTopics" name="postTopics" multiple size="15" defaultValue={props.postTopics.map(t => t.id)} onChange={props.onSelectChange}>
                     {makeOptions()}
                 </select>
+                <p className="please_dont">Please only select 3-4 topics</p>
                 <input type="submit" name="submit" value="Submit Edit"/>
             </form>
             <button name="cancelEdit" className="cancel_button" onClick={() => props.cancelEdit()}>x</button>

@@ -23,16 +23,17 @@
             list-style: none;
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
             justify-content: flex-start;
             width: 100%;
             margin: 1rem auto;
             .topic__label{
                 padding: 0.5rem;
-                margin: 0 0.5rem;
+                margin: 0.5rem;
                 font-size: 0.75rem;
                 letter-spacing: 1px;
                 line-height: 1;
-                background: lighten($pink, 30%);
+                background: lighten($pink, 15%);
                 border-radius: 1rem;
             }
         }
@@ -109,6 +110,12 @@
                     padding: 0.25rem;
                     font-size: 0.75rem;
                 }
+            }
+            .please_dont{
+                text-align: right;
+                font-size: 0.875rem;
+                color: red;
+                margin-bottom: 1rem;
             }
             input[type='submit']{
                 align-self: center;

@@ -14,6 +14,7 @@ const CreateForm = (props) => {
                 <select id="postTopics" name="postTopics" multiple size="15" onChange={props.onSelectChange}>
                     {makeOptions()}
                 </select>
+                <p className="please_dont">Please only select 3-4 topics</p>
                 <input type="submit" name="submit" value="Submit Post"/>
             </form>
             <button className="cancel_button" onClick={props.cancelCreate}>x</button>
