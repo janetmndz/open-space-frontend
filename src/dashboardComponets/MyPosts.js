@@ -31,7 +31,6 @@ class MyPosts extends React.Component {
         })
     }
     onChange = (e) => {
-        console.log(e.target.value.length)
         if (e.target.value.length <= 140){
             this.setState({
                 postContent: e.target.value,

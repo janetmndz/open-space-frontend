@@ -94,6 +94,7 @@ class Dashboard extends React.Component{
         fetch('https://openspace-api.herokuapp.com/posts/', config)
         .then(r => r.json())
         .then(d => {
+            console.log(d);
             this.setState({
                 posts: [
                     ...this.state.posts,
